@@ -8,6 +8,8 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+import { UniqueIdService } from '../../services/unique-id/unique-id.service';
+
 enum YesNoButtonGroupOptions {
   YES = 'yes',
   NO = 'no',
@@ -28,12 +30,15 @@ enum YesNoButtonGroupOptions {
 export class YesNoButtonGroupComponent implements OnInit, ControlValueAccessor {
   @Input() public value: string = '';
   @Output() public valueChange = new EventEmitter<string>();
+  public id: string = '';
   @Input() public label: string = '';
   public options = YesNoButtonGroupOptions;
   public onChange = (value: string): void => {};
   public onTouched = () => {};
 
-  constructor() {}
+  constructor(uniqueIdService: UniqueIdService) {
+    this.id = uniqueIdService.generateUniqueIdWithPrefix('yes-no-button-group');
+  }
 
   ngOnInit(): void {}
 
