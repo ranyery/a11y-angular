@@ -6,6 +6,8 @@
 >
   <label [attr.id]="id" class="label">{{ label }}</label>
   <button
+    app-keyboard-manager-item
+    (focused)="activate(options.YES)"
     role="radio"
     [attr.aria-checked]="value === options.YES"
     [attr.tabindex]="value === options.YES || value === null ? 0 : -1"
@@ -17,6 +19,8 @@
     Yes
   </button>
   <button
+    app-keyboard-manager-item
+    (focused)="activate(options.NO)"
     role="radio"
     [attr.aria-checked]="value === options.NO"
     [attr.tabindex]="value === options.NO ? 0 : -1"
